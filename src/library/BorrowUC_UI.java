@@ -65,31 +65,7 @@ public class BorrowUC_UI extends JPanel implements IBorrowUI {
 		this.state = state;
 	}
 
-	/*
-	public void setState(EBorrowState state) {
-		CardLayout cl = (CardLayout)this.getLayout();
-		switch($SWITCH_TABLE$library$interfaces$EBorrowState()[state.ordinal()]) {
-			case 2:
-				cl.show(this, state.toString());
-				break;
-			case 3:
-				cl.show(this, state.toString());
-				break;
-			case 4:
-				cl.show(this, state.toString());
-			case 5:
-			case 7:
-				break;
-			case 6:
-				cl.show(this, state.toString());
-				break;
-			default:
-				throw new RuntimeException("Unknown state");
-		}
 
-		this.state = state;
-	}
-	*/
 
 	public void displayMemberDetails(int memberID, String memberName, String memberPhone) {
 		IBorrowUI ui = (IBorrowUI)this.panels.get(this.state);

@@ -197,60 +197,6 @@ public class BorrowUC_CTL implements ICardReaderListener, IScannerListener, IBor
     }
 
 
-/*
-	private void setState(EBorrowState state) {
-		System.out.println("Setting state: " + state);
-		this.state = state;
-		this.ui.setState(state);
-
-		switch($SWITCH_TABLE$library$interfaces$EBorrowState()[state.ordinal()]) {
-			case 2:
-				this.reader.setEnabled(true);
-				this.scanner.setEnabled(false);
-				break;
-			case 3:
-				this.reader.setEnabled(false);
-				this.scanner.setEnabled(true);
-				this.bookList = new ArrayList();
-				this.loanList = new ArrayList();
-				this.scanCount = this.borrower.getLoans().size();
-				this.ui.displayScannedBookDetails("");
-				this.ui.displayPendingLoan("");
-				break;
-			case 4:
-				this.reader.setEnabled(false);
-				this.scanner.setEnabled(false);
-				this.ui.displayConfirmingLoan(this.buildLoanListDisplay(this.loanList));
-				break;
-			case 5:
-				this.reader.setEnabled(false);
-				this.scanner.setEnabled(false);
-				Iterator var3 = this.loanList.iterator();
-
-				while(var3.hasNext()) {
-					ILoan loan = (ILoan)var3.next();
-					this.loanDAO.commitLoan(loan);
-				}
-
-				this.printer.print(this.buildLoanListDisplay(this.loanList));
-				this.close();
-				break;
-			case 6:
-				this.reader.setEnabled(false);
-				this.scanner.setEnabled(false);
-				this.ui.displayErrorMessage(String.format("Member %d cannot borrow at this time.", new Object[]{Integer.valueOf(this.borrower.getID())}));
-				break;
-			case 7:
-				this.reader.setEnabled(false);
-				this.scanner.setEnabled(false);
-				this.close();
-				break;
-			default:
-				throw new RuntimeException("Unknown state");
-		}
-
-	}
-	*/
 
 	public void cancelled() {
 		this.setState(EBorrowState.CANCELLED);

@@ -80,15 +80,6 @@ public class BorrowUC_CTLTest {
     @After
     public void tearDown() throws Exception {
 
-        reader = null;
-        scanner = null;
-        printer = null;
-        display = null;
-        ui = null;
-        bookDAO = null;
-        memberDAO = null;
-        loanDAO = null;
-
     }
 
 

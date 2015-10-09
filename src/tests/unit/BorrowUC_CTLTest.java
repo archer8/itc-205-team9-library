@@ -95,7 +95,7 @@ public class BorrowUC_CTLTest {
 
     @Test
     public void testInitialise() throws Exception {
-
+        ctl.initialise();
     }
 
     @Test
@@ -132,5 +132,5 @@ public class BorrowUC_CTLTest {
     public void testLoansRejected() throws Exception {
 
     }
-    
+
 }

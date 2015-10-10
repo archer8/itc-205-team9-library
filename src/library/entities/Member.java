@@ -36,6 +36,7 @@ public class Member implements IMember {
 
     private boolean sane(String firstName, String lastName, String contactPhone, String emailAddress, int memberID) {
         return firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty() && contactPhone != null && !contactPhone.isEmpty() && emailAddress != null && !emailAddress.isEmpty() && memberID > 0;
+
     }
 
     public boolean hasOverDueLoans() {

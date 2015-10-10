@@ -7,6 +7,7 @@ package tests.unit;
 import javax.swing.*;
 import java.util.List;
 
+import library.BorrowUC_UI;
 import library.panels.borrow.ABorrowPanel;
 import org.junit.After;
 import org.junit.Before;
@@ -47,7 +48,7 @@ public class BorrowUC_CTLTest {
     private IPrinter printer;
     private IDisplay display;
     private int scanCount = 0;
-    private IBorrowUI ui;
+    private BorrowUC_UI ui;
     private EBorrowState state;
     private IBookDAO bookDAO;
     private IMemberDAO memberDAO;
@@ -70,9 +71,10 @@ public class BorrowUC_CTLTest {
         bookDAO   = mock(library.interfaces.daos.IBookDAO.class);
         memberDAO = mock(library.interfaces.daos.IMemberDAO.class);
         loanDAO   = mock(library.interfaces.daos.ILoanDAO.class);
-        ui        = mock(ABorrowPanel.class);
+        ui = mock(library.BorrowUC_UI.class);
 
-        ctl = new BorrowUC_CTL(reader, scanner, printer, display, bookDAO, loanDAO, memberDAO);
+
+        ctl = new BorrowUC_CTL(reader, scanner, printer, display, bookDAO, loanDAO, memberDAO, ui);
 
 
     }
@@ -83,45 +85,33 @@ public class BorrowUC_CTLTest {
     }
 
 
-
     @Test
-    public void testInitialise() throws Exception {
+    public void displaysErrorMessageIfMemberIDNotFound() throws Exception {
         ctl.initialise();
+        ctl.cardSwiped(66);
+        verify(ui).displayErrorMessage("Member ID 66 not found");
     }
 
     @Test
-    public void testClose() throws Exception {
+    public void doesntDisplayErrorMessageIfDataIsGood() throws Exception {
+
+        when(memberDAO.getMemberByID(6)).thenReturn(mock(IMember.class));
+
+        ctl.initialise();
+        ctl.cardSwiped(6);
+
+        verify(ui, never()).displayErrorMessage(anyString());
 
     }
 
-    @Test
-    public void testCardSwiped() throws Exception {
 
-    }
+        // when + verify = mockito stuff to use most of the time.
+        //
 
-    @Test
-    public void testBookScanned() throws Exception {
 
-    }
 
-    @Test
-    public void testCancelled() throws Exception {
 
-    }
 
-    @Test
-    public void testScansCompleted() throws Exception {
 
-    }
-
-    @Test
-    public void testLoansConfirmed() throws Exception {
-
-    }
-
-    @Test
-    public void testLoansRejected() throws Exception {
-
-    }
 
 }

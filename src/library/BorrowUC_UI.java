@@ -20,14 +20,15 @@ public class BorrowUC_UI extends JPanel implements IBorrowUI {
 	private EBorrowState state;
 	private Map<EBorrowState, IBorrowUI> panels;
 
-	public BorrowUC_UI(IBorrowUIListener listener) {
-		this.listener = listener;
+	public BorrowUC_UI() {
+
 		this.panels = new HashMap();
 		this.setLayout(new CardLayout());
 		this.addPanel(new SwipeCardPanel(listener), EBorrowState.INITIALIZED);
 		this.addPanel(new ScanningPanel(listener), EBorrowState.SCANNING_BOOKS);
 		this.addPanel(new RestrictedPanel(listener), EBorrowState.BORROWING_RESTRICTED);
 		this.addPanel(new ConfirmLoanPanel(listener), EBorrowState.CONFIRMING_LOANS);
+
 	}
 
 	private void addPanel(ABorrowPanel panel, EBorrowState state) {
@@ -35,6 +36,11 @@ public class BorrowUC_UI extends JPanel implements IBorrowUI {
 		this.add(panel, state.toString());
 	}
 
+	public void setListener(IBorrowUIListener listener){
+
+		this.listener = listener;
+
+	}
 
 	@Override
 	public void setState(EBorrowState state) {

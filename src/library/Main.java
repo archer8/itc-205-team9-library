@@ -31,6 +31,7 @@ public class Main implements IMainListener {
 	private IBookDAO bookDAO = new BookMapDAO(new BookHelper());
 	private ILoanDAO loanDAO = new LoanMapDAO(new LoanHelper());
 	private IMemberDAO memberDAO = new MemberMapDAO(new MemberHelper());
+	private BorrowUC_UI ui = new BorrowUC_UI();
 
 	public Main() {
 		this.setupTestData();
@@ -44,7 +45,7 @@ public class Main implements IMainListener {
 	}
 
 	public void borrowBooks() {
-		final BorrowUC_CTL ctl = new BorrowUC_CTL(this.reader, this.scanner, this.printer, this.display, this.bookDAO, this.loanDAO, this.memberDAO);
+		final BorrowUC_CTL ctl = new BorrowUC_CTL(this.reader, this.scanner, this.printer, this.display, this.bookDAO, this.loanDAO, this.memberDAO, this.ui);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				ctl.initialise();
